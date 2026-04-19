@@ -1,5 +1,11 @@
 import json
 
+def exportar_csv(gastos):
+    with open("gastos.csv", "w", encoding="utf-8") as arquivo:
+        arquivo.write("nome;valor;categoria\n")
+        
+        for g in gastos:
+            arquivo.write(f"{g['nome']};{g['valor']};{g['categoria']}\n")
 try:
     with open("gastos.json", "r") as arquivo:
         gastos = json.load(arquivo)
@@ -16,8 +22,7 @@ while True:
     print("4 - Total por categoria")
     print("5 - Maires gastos")
     print("6 - Editar gasto")
-    print("7 - Exportar para CSV")
-    print("8 - Remover gasto")
+    print("7 - Remover gasto")
     print("9 - Sair")
 
     opcao = input("\nEscolha: ")
@@ -81,13 +86,6 @@ while True:
         break
 
     elif opcao =="7":
-        with open("gastos.csv", "w", encoding="utf-8") as arquivo:
-            arquivo.write("nome;valor;categoria\n")
-            for g in gastos:
-                arquivo.write(f"{g['nome']};{g['valor']};{g['categoria']}\n")
-            print("Dados exportados para gastos.csv!")
-
-    elif opcao =="8":
         print("\n Escolha o índice para remover:")
         
         for i, g in enumerate(gastos):
@@ -102,6 +100,9 @@ while True:
             #salva no JSON
             with open("gastos.json", "w") as arquivo:
                 json.dump(gastos,arquivo, indent=4)
+            
+            #atualiza CSV
+            exportar_csv(gastos)
 
         except (ValueError, IndexError): 
             print("Índice inválido!")
@@ -137,6 +138,9 @@ while True:
             with open("gastos.json", "w") as arquivo:
                 json.dump(gastos, arquivo, indent=4)
                 print("Gasto atualizado!")
+                
+            #atualiza CSV
+            exportar_csv(gastos)
             
         except:
             print("Erro ao editar!")

@@ -1,8 +1,6 @@
 nome;valor;categoria
-uber;30.0;transporte
+taxi;35.0;transporte
 marmita;20.0;comida
 jogo;100.0;lazer
 doce;15.0;comida
 carro;800.0;transporte
-bola;50.0;lazer
-bala;1.0;comida
