@@ -1,10 +1,22 @@
 [
     {
-        "nome": "a",
-        "valor": 20.0
+        "nome": "uber",
+        "valor": 30.0,
+        "categoria": "transporte"
     },
     {
-        "nome": "b",
-        "valor": 50.0
+        "nome": "marmita",
+        "valor": 20.0,
+        "categoria": "comida"
+    },
+    {
+        "nome": "jogo",
+        "valor": 100.0,
+        "categoria": "lazer"
+    },
+    {
+        "nome": "doce",
+        "valor": 15.0,
+        "categoria": "comida"
     }
 ]
