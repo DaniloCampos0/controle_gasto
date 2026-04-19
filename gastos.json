@@ -1,27 +1,14 @@
 [
     {
-        "nome": "taxi",
-        "valor": 35.0,
-        "categoria": "transporte"
+        "nome": "gym",
+        "valor": 90.0,
+        "categoria": "lazer",
+        "data": "2026-04-19"
     },
     {
-        "nome": "marmita",
-        "valor": 20.0,
-        "categoria": "comida"
-    },
-    {
-        "nome": "jogo",
-        "valor": 100.0,
-        "categoria": "lazer"
-    },
-    {
-        "nome": "doce",
-        "valor": 15.0,
-        "categoria": "comida"
-    },
-    {
-        "nome": "carro",
-        "valor": 800.0,
-        "categoria": "transporte"
+        "nome": "gasolina",
+        "valor": 50.0,
+        "categoria": "transporte",
+        "data": "2026-04-19"
     }
 ]

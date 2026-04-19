@@ -1,4 +1,6 @@
 import json
+
+from datetime import date
             
 try:
     with open("gastos.json", "r") as arquivo:
@@ -11,10 +13,10 @@ except FileNotFoundError:
 
 def exportar_csv(gastos):
     with open("gastos.csv", "w", encoding="utf-8") as arquivo:
-        arquivo.write("nome;valor;categoria\n")
+        arquivo.write("nome;valor;categoria;data\n")
         
         for g in gastos:
-            arquivo.write(f"{g['nome']};{g['valor']:.2f};{g['categoria']}\n")
+            arquivo.write(f"{g['nome']};{g['valor']:.2f};{g['categoria']};{g.get('data', 'sem data')}\n")
             
 def salvar_dados(gastos):
     with open("gastos.json", "w") as arquivo:
@@ -33,11 +35,14 @@ def adicionar_gasto(gastos):
             print("Digite um número válido!")
 
     categoria = input("Categoria (comida, transporte, lazer...): ")
-
+    
+    data= date.today().strftime("%Y-%m-%d")
+    
     gastos.append({
             "nome": nome, 
             "valor": valor,
-            "categoria": categoria
+            "categoria": categoria,
+            "data": data
             })
     
     salvar_dados(gastos)
@@ -51,7 +56,7 @@ def listar_gastos(gastos):
     print("\nSeus gastos: ")
     
     for i, g in enumerate(gastos):
-        print(f"{i} - {g['nome']} - R$ {g['valor']:.2f} - {g['categoria']}")
+        print(f"{i} - {g['nome']} - R$ {g['valor']:.2f} - {g['categoria']} - {g.get('data','sem data')}")
 
 def remover_gasto(gastos):
     if not gastos:
@@ -91,11 +96,12 @@ def editar_gasto(gastos):
             novo_valor = gasto["valor"]
     
         nova_categoria = input(f"Nova categoria ({gasto['categoria']}): ") or gasto["categoria"]
-
+        nova_data = input(f"Nova data({gasto['data']}): ") or gasto ["data"]
         gastos[indice] = {
             "nome" : novo_nome,
             "valor": novo_valor,
-            "categoria": nova_categoria
+            "categoria": nova_categoria,
+            "data":nova_data
         }        
 
         #salva
@@ -138,7 +144,7 @@ while True:
        listar_gastos(gastos)
        
     elif opcao =="3":
-        print(f"Total gasto: R$, {calcular_total(gastos):.2f}")
+        print(f"Total gasto: R$ {calcular_total(gastos):.2f}")
 
     elif opcao =="4":
         totais = total_por_categoria(gastos)

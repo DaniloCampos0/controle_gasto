@@ -1,6 +1,3 @@
-nome;valor;categoria
-taxi;35.0;transporte
-marmita;20.0;comida
-jogo;100.0;lazer
-doce;15.0;comida
-carro;800.0;transporte
+nome;valor;categoria;data
+gym;90.00;lazer;2026-04-19
+gasolina;50.00;transporte;2026-04-19
