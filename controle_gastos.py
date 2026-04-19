@@ -10,15 +10,17 @@ except:
 
 
 while True:
-    print("\n 1 - Adicionar gasto")
+    print("\n1 - Adicionar gasto")
     print("2 - Ver gastos")
     print("3 - Ver total")
     print("4 - Total por categoria")
     print("5 - Maires gastos")
-    print("6 - Sair")
+    print("6 - Editar gasto")
     print("7 - Exportar para CSV")
+    print("8 - Remover gasto")
+    print("9 - Sair")
 
-    opcao = input("Escolha: ")
+    opcao = input("\nEscolha: ")
 
     if opcao =="1":
         nome = input("Nome do gasto: ")
@@ -44,8 +46,8 @@ while True:
 
     elif opcao =="2":
         print ("\n Seus gastos: ")
-        for g in gastos:
-            print(f"{g['nome']} - R$ {g['valor']} - {g['categoria']}")
+        for i, g in enumerate(gastos):
+            print(f"{i} - {g['nome']} - R$ {g['valor']} - {g['categoria']}")
 
     elif opcao =="3":
         total= sum(g["valor"] for g in gastos)
@@ -74,7 +76,7 @@ while True:
         for g in gastos_ordenados[:5]:
             print(f"{g['nome']} - R$ {g['valor']} - {g['categoria']}")
 
-    elif opcao =="6":
+    elif opcao =="9":
         print("Saindo...")
         break
 
@@ -85,5 +87,56 @@ while True:
                 arquivo.write(f"{g['nome']};{g['valor']};{g['categoria']}\n")
             print("Dados exportados para gastos.csv!")
 
-    else:
-        print("Opção inválida.")
+    elif opcao =="8":
+        print("\n Escolha o índice para remover:")
+        
+        for i, g in enumerate(gastos):
+            print(f"{i} - {g['nome']} - R$ {g['valor']}")
+
+        try: 
+            indice = int(input("Número: "))
+            removido = gastos.pop(indice)
+            
+            print(f"Removido: {removido['nome']}")
+            
+            #salva no JSON
+            with open("gastos.json", "w") as arquivo:
+                json.dump(gastos,arquivo, indent=4)
+
+        except (ValueError, IndexError): 
+            print("Índice inválido!")
+            
+    elif opcao =="6":
+        print("\nEscolha o índice para alterar:")
+        
+        for i, g in enumerate(gastos):
+            print(f"{i} - {g['nome']} - R$ {g['valor']} - {g['categoria']}")
+            
+        try:
+            indice = int(input("Número: "))
+            gasto = gastos[indice]
+                
+            novo_nome = input(f"Novo nome ({gasto['nome']}): ") or gasto["nome"]
+            
+            try:
+                novo_valor_input = input(f"Novo valor ({gasto['valor']}): ")
+                novo_valor = float(novo_valor_input) if novo_valor_input else gasto["valor"]
+                
+            except:
+                novo_valor = gasto["valor"]
+        
+            nova_categoria = input(f"Nova categoria ({gasto['categoria']}): ") or gasto["categoria"]
+
+            gastos[indice] = {
+                "nome" : novo_nome,
+                "valor": novo_valor,
+                "categoria": nova_categoria
+            }        
+
+            #salva
+            with open("gastos.json", "w") as arquivo:
+                json.dump(gastos, arquivo, indent=4)
+                print("Gasto atualizado!")
+            
+        except:
+            print("Erro ao editar!")
