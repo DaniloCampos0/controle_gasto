@@ -18,5 +18,20 @@
         "nome": "doce",
         "valor": 15.0,
         "categoria": "comida"
+    },
+    {
+        "nome": "carro",
+        "valor": 800.0,
+        "categoria": "transporte"
+    },
+    {
+        "nome": "bola",
+        "valor": 50.0,
+        "categoria": "lazer"
+    },
+    {
+        "nome": "bala",
+        "valor": 1.0,
+        "categoria": "comida"
     }
 ]

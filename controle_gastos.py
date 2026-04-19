@@ -16,6 +16,7 @@ while True:
     print("4 - Total por categoria")
     print("5 - Maires gastos")
     print("6 - Sair")
+    print("7 - Exportar para CSV")
 
     opcao = input("Escolha: ")
 
@@ -76,6 +77,13 @@ while True:
     elif opcao =="6":
         print("Saindo...")
         break
+
+    elif opcao =="7":
+        with open("gastos.csv", "w", encoding="utf-8") as arquivo:
+            arquivo.write("nome;valor;categoria\n")
+            for g in gastos:
+                arquivo.write(f"{g['nome']};{g['valor']};{g['categoria']}\n")
+            print("Dados exportados para gastos.csv!")
 
     else:
         print("Opção inválida.")
