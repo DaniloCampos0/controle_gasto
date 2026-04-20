@@ -1,6 +1,7 @@
 import json
 
 from datetime import date
+from dateutil.relativedelta import relativedelta
             
 try:
     with open("gastos.json", "r") as arquivo:
@@ -29,21 +30,36 @@ def adicionar_gasto(gastos):
 
     while True:
         try: 
-            valor = float(input("Valor: ").replace(",","."))
+            valor_total = float(input("Valor: ").replace(",","."))
             break
         except ValueError:
             print("Digite um número válido!")
 
     categoria = input("Categoria (comida, transporte, lazer...): ")
     
+    parcelas_input = input("Parcelas (1 se não for parcelado): ")
+    try:
+        parcelas = int(parcelas_input)
+        if parcelas <= 0:
+            parcelas = 1
+    except ValueError:
+        parcelas = 1
+    
+    valor_parcela = valor_total / parcelas
+    
     data= date.today().strftime("%Y-%m-%d")
     
-    gastos.append({
-            "nome": nome, 
-            "valor": valor,
-            "categoria": categoria,
-            "data": data
-            })
+    data_base = date.today()
+    
+    for i in range(parcelas):
+        data_parcela = (data_base + relativedelta(months=i)).strftime("%Y-%m")
+        
+        gastos.append({
+                "nome": f"{nome} ({i+1}/{parcelas})",
+                "valor": valor_parcela,
+                "categoria": categoria,
+                "data": data_parcela
+                })
     
     salvar_dados(gastos)
     print("Gasto adicionado!")
@@ -153,7 +169,19 @@ def media_por_categoria(gastos):
         medias[cat] = info["total"] / info["quantidade"]
         
     return medias 
-            
+
+def ranking_categorias(gastos):
+    ranking = {}
+    
+    for g in gastos:
+        cat = g["categoria"]
+        ranking[cat] = ranking.get(cat, 0) + g["valor"]
+        
+    # ordenar do maior para o menor 
+    ranking_ordenado = sorted(ranking.items(), key=lambda x: x[1], reverse=True)
+    
+    return ranking_ordenado
+           
 # PROGRAMA PRINCIPAL  
     
 while True:
@@ -167,6 +195,8 @@ while True:
     print("8 - Sair")
     print("9- Gastos do mês atual")
     print("10 - Média por categoria")
+    print("11 - Ranking de categorias")
+    
 
     opcao = input("\nEscolha: ")
 
@@ -222,3 +252,14 @@ while True:
         
         for cat, media in medias.items():
             print(f"{cat}: R$ {media:.2f}")
+            
+    elif opcao =="11":
+        print("\nRanking de categorias:")
+        
+        ranking = ranking_categorias(gastos)
+        
+        if not ranking:
+            print("Nenhum gasto cadastrado.")
+        else: 
+            for i, (cat,total) in enumerate(ranking, start=1):
+                print(f"{i}º {cat} - R$ {total:.2f}")
