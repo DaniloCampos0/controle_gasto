@@ -123,6 +123,37 @@ def total_por_categoria(gastos):
         
     return totais
 
+def gastos_do_mes_atual(gastos):
+    mes_atual = date.today().strftime("%Y-%m")
+    
+    filtrados = [
+        g for g in gastos
+        if g.get("data", "").startswith(mes_atual)
+    ]
+    
+    return filtrados
+
+def media_por_categoria(gastos):
+    dados = {}
+    
+    for g in gastos:
+        cat = g["categoria"]
+        
+        if cat not in dados:
+            dados[cat] = {
+                "total": 0,
+                "quantidade": 0
+            }
+        dados[cat]["total"] += g["valor"] 
+        dados[cat]["quantidade"] += 1
+    
+    medias = {}
+        
+    for cat, info in dados.items():
+        medias[cat] = info["total"] / info["quantidade"]
+        
+    return medias 
+            
 # PROGRAMA PRINCIPAL  
     
 while True:
@@ -134,6 +165,8 @@ while True:
     print("6 - Editar gasto")
     print("7 - Remover gasto")
     print("8 - Sair")
+    print("9- Gastos do mês atual")
+    print("10 - Média por categoria")
 
     opcao = input("\nEscolha: ")
 
@@ -170,3 +203,22 @@ while True:
     elif opcao =="8":
         print("Saindo...")
         break
+    
+    elif opcao =="9":
+        print("\nGastos do mês atual:")
+        
+        gastos_mes = gastos_do_mes_atual(gastos)
+        
+        if not gastos_mes:
+            print("Nenhum gasto neste mês.")
+        else:
+            for g in gastos_mes:
+                print(f"{g['nome']} - R$ {g['valor']:.2f} - {g['categoria']} - {g['data']}")
+                
+    elif opcao =="10":
+        medias = media_por_categoria(gastos)
+        
+        print("\nMédia por categoria:")
+        
+        for cat, media in medias.items():
+            print(f"{cat}: R$ {media:.2f}")

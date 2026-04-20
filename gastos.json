@@ -10,5 +10,41 @@
         "valor": 50.0,
         "categoria": "transporte",
         "data": "2026-04-19"
+    },
+    {
+        "nome": "jogo",
+        "valor": 200.0,
+        "categoria": "lazer",
+        "data": "2026-04-19"
+    },
+    {
+        "nome": "futebol",
+        "valor": 60.0,
+        "categoria": "lazer",
+        "data": "2026-04-19"
+    },
+    {
+        "nome": "marmita",
+        "valor": 20.0,
+        "categoria": "comida",
+        "data": "2026-04-19"
+    },
+    {
+        "nome": "japones",
+        "valor": 110.0,
+        "categoria": "comida",
+        "data": "2026-04-19"
+    },
+    {
+        "nome": "uber",
+        "valor": 40.0,
+        "categoria": "transporte",
+        "data": "2026-04-19"
+    },
+    {
+        "nome": "moto",
+        "valor": 60.0,
+        "categoria": "transporte",
+        "data": "2026-04-19"
     }
 ]
