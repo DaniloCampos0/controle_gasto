@@ -24,12 +24,10 @@ def adicionar_gasto(gastos):
     
     valor_parcela = valor_total / parcelas
     
-    data= date.today().strftime("%Y-%m")
-    
     data_base = date.today()
     
     for i in range(parcelas):
-        data_parcela = (data_base + relativedelta(months=i)).strftime("%Y-%m")
+        data_parcela = (data_base + relativedelta(months=i)).strftime("%Y-%m-%d")
         
         gastos.append({
                 "nome": f"{nome} ({i+1}/{parcelas})",
@@ -176,7 +174,7 @@ def total_por_mes(gastos):
     totais = {}
     
     for g in gastos:
-        mes = g.get("data", "sem data")
+        mes = get_mes(g.get("data", "sem data"))
         totais[mes] = totais.get(mes, 0) + g["valor"]
         
     return totais
@@ -187,7 +185,7 @@ def gastos_futuros(gastos):
     futuros = {}
     
     for g in gastos:
-        data = g.get("data", "")
+        data = get_mes(g.get("data", ""))
         
         if data > hoje: 
             futuros[data] = futuros.get(data, 0) + g["valor"]
@@ -218,3 +216,6 @@ def maiores_gastos_agrupados(gastos):
     
     for nome, total in ordenado[:5]:
         print(f"{nome} - R$ {total:.2f}")
+        
+def get_mes(data):
+    return data[:7]

@@ -106,5 +106,17 @@
         "valor": 1000.0,
         "categoria": "entretenimento",
         "data": "2026-07"
+    },
+    {
+        "nome": "salada (1/1)",
+        "valor": 10.0,
+        "categoria": "comida",
+        "data": "2026-04"
+    },
+    {
+        "nome": "spotify (1/1)",
+        "valor": 17.0,
+        "categoria": "entretenimento",
+        "data": "2026-04-20"
     }
 ]
