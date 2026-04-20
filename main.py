@@ -14,7 +14,7 @@ while True:
     print("6 - Editar gasto")
     print("7 - Remover gasto")
     print("8 - Ranking de categorias")
-    print("9- Gastos do mês atual")
+    print("9 - Gastos do mês atual")
     print("10 - Média por categoria")
     print("11 - Sair")
     print("12 - Ver gastos por mês")
@@ -40,12 +40,7 @@ while True:
             print(f"{cat}: R$ {total:.2f}")
 
     elif opcao =="5":
-        print("\nMaiores gastos:")
-
-        gastos_ordenados = sorted(gastos, key=lambda g: g["valor"], reverse=True)
-
-        for g in gastos_ordenados[:5]:
-            print(f"{g['nome']} - R$ {g['valor']:.2f} - {g['categoria']}")
+        maiores_gastos_agrupados(gastos)
           
     elif opcao =="6":
         editar_gasto(gastos)

@@ -200,3 +200,21 @@ def gastos_futuros(gastos):
     
     for mes, total in sorted(futuros.items()):
         print(f"{mes}: R$ {total:.2f}")
+
+def maiores_gastos_agrupados(gastos):
+    agrupados = {}
+    
+    for g in gastos:
+        nome  = g["nome"]
+        #remove "(1/12)"
+        nome_base = nome.split(" (")[0]
+        
+        agrupados[nome_base] = agrupados.get(nome_base, 0) + g["valor"]
+        
+    #ordenar do maior para o menor
+    ordenado = sorted(agrupados.items(), key=lambda x: x[1], reverse=True)
+    
+    print("\nMaiores gastos (agrupados):")
+    
+    for nome, total in ordenado[:5]:
+        print(f"{nome} - R$ {total:.2f}")
