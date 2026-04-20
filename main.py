@@ -17,6 +17,9 @@ while True:
     print("9- Gastos do mês atual")
     print("10 - Média por categoria")
     print("11 - Sair")
+    print("12 - Ver gastos por mês")
+    print("13 - Ver total por mês")
+    print("14 - Ver gastos futuros")
     
     opcao = input("\nEscolha: ")
 
@@ -83,4 +86,18 @@ while True:
     elif opcao =="11":
         print("Saindo...")
         break
-   
+
+    elif opcao =="12":
+        filtrar_por_mes(gastos)
+        
+    elif opcao =="13":
+        totais = total_por_mes(gastos)
+        
+        print("\nTotais por mês:")
+        for mes, total in sorted(totais.items()):
+            print(f"{mes}: R$ {total:.2f}")
+            
+    elif opcao =="14":
+        gastos_futuros(gastos)
+            
+    

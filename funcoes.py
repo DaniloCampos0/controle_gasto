@@ -24,7 +24,7 @@ def adicionar_gasto(gastos):
     
     valor_parcela = valor_total / parcelas
     
-    data= date.today().strftime("%Y-%m-%d")
+    data= date.today().strftime("%Y-%m")
     
     data_base = date.today()
     
@@ -158,3 +158,45 @@ def total_por_categoria(gastos):
         totais[cat] = totais.get(cat,0) + g["valor"]
         
     return totais
+
+def filtrar_por_mes(gastos):
+    mes = input("Digite o mês (YYYY-MM): ")
+    
+    filtrados = [g for g in gastos if g.get("data", "").startswith(mes)]
+    
+    if not filtrados:
+        print("nenhum gasto nesse mês.")
+        return
+    
+    print(f"\nGastos de {mes}:")
+    for g in filtrados:
+        print(f"{g['nome']} - R$ {g['valor']:.2f} - {g['categoria']}")
+        
+def total_por_mes(gastos):
+    totais = {}
+    
+    for g in gastos:
+        mes = g.get("data", "sem data")
+        totais[mes] = totais.get(mes, 0) + g["valor"]
+        
+    return totais
+
+def gastos_futuros(gastos):
+    hoje = date.today().strftime("%Y-%m")
+    
+    futuros = {}
+    
+    for g in gastos:
+        data = g.get("data", "")
+        
+        if data > hoje: 
+            futuros[data] = futuros.get(data, 0) + g["valor"]
+            
+    if not futuros:
+        print("Nenhum gasto futuro.")
+        return
+    
+    print("\nCompromissos futuros:")
+    
+    for mes, total in sorted(futuros.items()):
+        print(f"{mes}: R$ {total:.2f}")
