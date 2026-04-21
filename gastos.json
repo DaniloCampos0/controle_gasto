@@ -3,120 +3,189 @@
         "nome": "gym",
         "valor": 90.0,
         "categoria": "lazer",
-        "data": "2026-04"
+        "data": "2026-04",
+        "mes": "2026-04"
     },
     {
         "nome": "gasolina",
         "valor": 50.0,
         "categoria": "transporte",
-        "data": "2026-04"
+        "data": "2026-04",
+        "mes": "2026-04"
     },
     {
         "nome": "jogo",
         "valor": 200.0,
         "categoria": "lazer",
-        "data": "2026-04"
+        "data": "2026-04",
+        "mes": "2026-04"
     },
     {
         "nome": "futebol",
         "valor": 60.0,
         "categoria": "lazer",
-        "data": "2026-04"
+        "data": "2026-04",
+        "mes": "2026-04"
     },
     {
         "nome": "marmita",
         "valor": 20.0,
         "categoria": "comida",
-        "data": "2026-04"
+        "data": "2026-04",
+        "mes": "2026-04"
     },
     {
         "nome": "japones",
         "valor": 110.0,
         "categoria": "comida",
-        "data": "2026-04"
+        "data": "2026-04",
+        "mes": "2026-04"
     },
     {
         "nome": "uber",
         "valor": 40.0,
         "categoria": "transporte",
-        "data": "2026-04"
+        "data": "2026-04",
+        "mes": "2026-04"
     },
     {
         "nome": "moto",
         "valor": 60.0,
         "categoria": "transporte",
-        "data": "2026-04"
+        "data": "2026-04",
+        "mes": "2026-04"
     },
     {
         "nome": "pao com queijo",
         "valor": 27.0,
         "categoria": "comida",
-        "data": "2026-04"
+        "data": "2026-04",
+        "mes": "2026-04"
     },
     {
         "nome": "celular",
         "valor": 3000.0,
         "categoria": "lazer",
-        "data": "2026-04"
+        "data": "2026-04",
+        "mes": "2026-04"
     },
     {
         "nome": "bk",
         "valor": 100.0,
         "categoria": "comida",
-        "data": "2026-04"
+        "data": "2026-04",
+        "mes": "2026-04"
     },
     {
         "nome": "ps5 (1/3)",
         "valor": 1166.6666666666667,
         "categoria": "entretenimento",
-        "data": "2026-04"
+        "data": "2026-04",
+        "mes": "2026-04"
     },
     {
         "nome": "ps5 (2/3)",
         "valor": 1166.6666666666667,
         "categoria": "entretenimento",
-        "data": "2026-05"
+        "data": "2026-05",
+        "mes": "2026-05"
     },
     {
         "nome": "ps5 (3/3)",
         "valor": 1166.6666666666667,
         "categoria": "entretenimento",
-        "data": "2026-06"
+        "data": "2026-06",
+        "mes": "2026-06"
     },
     {
         "nome": "notebook (1/4)",
         "valor": 1000.0,
         "categoria": "entretenimento",
-        "data": "2026-04"
+        "data": "2026-04",
+        "mes": "2026-04"
     },
     {
         "nome": "notebook (2/4)",
         "valor": 1000.0,
         "categoria": "entretenimento",
-        "data": "2026-05"
+        "data": "2026-05",
+        "mes": "2026-05"
     },
     {
         "nome": "notebook (3/4)",
         "valor": 1000.0,
         "categoria": "entretenimento",
-        "data": "2026-06"
+        "data": "2026-06",
+        "mes": "2026-06"
     },
     {
         "nome": "notebook (4/4)",
         "valor": 1000.0,
         "categoria": "entretenimento",
-        "data": "2026-07"
+        "data": "2026-07",
+        "mes": "2026-07"
     },
     {
         "nome": "salada (1/1)",
         "valor": 10.0,
         "categoria": "comida",
-        "data": "2026-04"
+        "data": "2026-04",
+        "mes": "2026-04"
     },
     {
         "nome": "spotify (1/1)",
         "valor": 17.0,
         "categoria": "entretenimento",
-        "data": "2026-04-20"
+        "data": "2026-04-20",
+        "mes": "2026-04"
+    },
+    {
+        "nome": "cinema",
+        "valor": 25.0,
+        "categoria": "lazer",
+        "data": "2026-04-23",
+        "mes": "2026-04"
+    },
+    {
+        "nome": "pneu",
+        "valor": 300.0,
+        "categoria": "transporte",
+        "data": "2026-04-25",
+        "mes": "2026-04"
+    },
+    {
+        "nome": "arroz",
+        "valor": 15.0,
+        "categoria": "comida",
+        "data": "2026-04-21",
+        "mes": "2026-04"
+    },
+    {
+        "nome": "pao",
+        "valor": 2.0,
+        "categoria": "comida",
+        "data": "2026-04-21",
+        "mes": "2026-04"
+    },
+    {
+        "nome": "radio",
+        "valor": 50.0,
+        "categoria": "entretenimento",
+        "data": "2026-04-27",
+        "mes": "2026-04"
+    },
+    {
+        "nome": "coca cola",
+        "valor": 4.5,
+        "categoria": "comida",
+        "data": "2026-04-21",
+        "mes": "2026-04"
+    },
+    {
+        "nome": "pamonha",
+        "valor": 20.0,
+        "categoria": "comida",
+        "data": "2026-04-21",
+        "mes": "2026-04"
     }
 ]

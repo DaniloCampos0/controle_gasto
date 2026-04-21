@@ -1,49 +1,132 @@
 import streamlit as st
 import pandas as pd
 import json
+import datetime
 
+st.title(" 💰 Controle de Gastos") 
+
+#--------------
 #carregar dados
-with open("gastos.json", "r") as arquivo:
-    gastos = json.load(arquivo)
+#--------------
+try:
+    with open("gastos.json", "r") as arquivo:
+        gastos = json.load(arquivo)
+except:
+    gastos = []
     
 df = pd.DataFrame(gastos)
+    
+# estado
+if "abrir_form" not in st.session_state:
+    st.session_state.abrir_form = False
 
-#extrair mês
+if "sucesso" not in st.session_state:
+    st.session_state.sucesso = False
 
-df["mes"] = df["data"].str[:7]
+# mensagem persistente
+if st.session_state.get("sucesso"):
+    st.success("✅ Gasto adicionado!")
+    st.session_state.sucesso = False
 
-st.title(" 💰 Controle de Gastos")
+# expander
+with st.expander("➕ Adicionar gasto", expanded=False):
 
-#tabela
-st.subheader("Seus gastos")
-st.dataframe(df)
+    with st.form("form_gasto", clear_on_submit=True):
+        nome = st.text_input("Nome")
+        valor = st.number_input(
+            "Valor",
+            min_value=0.0,
+            format="%.2f",
+            value=None,
+            placeholder="Digite o valor"
+        )
+        categoria = st.text_input("Categoria")
+        data = st.date_input("Data", value=datetime.date.today())
 
-#total geral
-total = df["valor"].sum()
-st.metric("Total gasto", f"R$ {total:.2f}")
+        enviado = st.form_submit_button("Salvar")
+        
+        if enviado: 
+            
+            #validação
+            if not nome or valor is None or not categoria:
+                st.warning("Preencha todos os campos!")
+                st.stop()
 
-#gastos por categoria
-st.subheader("Gastos por categoria")
+            novo_gasto = {
+                "nome": nome,
+                "valor": valor,
+                "categoria": categoria,
+                "data": data.strftime("%Y-%m-%d")
+            }
 
-por_categoria = df.groupby("categoria")["valor"].sum()
+            gastos.append(novo_gasto)
 
-st.bar_chart(por_categoria)
+            with open("gastos.json", "w") as arquivo:
+                json.dump(gastos, arquivo, indent=4)
 
-#gastos por mes
-st.subheader("Gastos por mês")
+            # controle
+            st.session_state.sucesso = True
+            st.rerun()
+# -------------------
+# dataframe
+# -------------------        
 
-por_mes = df.groupby("mes")["valor"].sum()
+if not df.empty:
+    df["mes"] = df["data"].str[:7]
 
-st.line_chart(por_mes)
+    # -------------------
+    # tabela
+    # -------------------
+    st.subheader("📋 Seus gastos")
+    edited_df = st.data_editor(df, num_rows="dynamic")
+    
+    if st.button("💾 Salvar alterações"):
+        
+        novos_gastos = edited_df.to_dict(orient="records")
+        
+        with open("gastos.json", "w") as arquivo:
+            json.dump(novos_gastos, arquivo, indent=4)
+            
+        st.success("Alterações salvas!")
+        st.rerun()
 
-#filtro por mes(interativo)
-st.subheader("Filtrar por mês")
+    # -------------------
+    # total geral
+    # -------------------
+    total = df["valor"].sum()
+    st.metric("Total gasto", f"R$ {total:.2f}")
 
-meses = df["mes"].unique()
-mes_selecionado = st.selectbox("Escolha o mês", meses)
+    # -------------------
+    # gráfico categoria
+    # -------------------
+    st.subheader("📊 Gastos por categoria")
 
-df_filtrado = df[df["mes"] == mes_selecionado]
+    por_categoria = df.groupby("categoria")["valor"].sum()
 
-st.dataframe(df_filtrado)
-st.write("Total:", df_filtrado["valor"].sum()) 
+    st.bar_chart(por_categoria)
+
+    # -------------------
+    # gráfico mês
+    # -------------------
+    st.subheader("📅 Gastos por mês")
+
+    por_mes = df.groupby("mes")["valor"].sum()
+
+    st.line_chart(por_mes)
+
+    # -------------------
+    # filtro
+    # -------------------
+    st.subheader("🔎 Filtrar por mês")
+
+    meses = df["mes"].unique()
+    mes_selecionado = st.selectbox("Escolha o mês", meses)
+
+    df_filtrado = df[df["mes"] == mes_selecionado]
+
+    st.dataframe(df_filtrado)
+    st.write(f"Total: R$ {df_filtrado['valor'].sum():.2f}")
+    
+else:
+    st.info("Nenhum gasto cadastrado ainda.")
 
