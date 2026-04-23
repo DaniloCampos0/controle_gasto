@@ -187,5 +187,12 @@
         "categoria": "comida",
         "data": "2026-04-21",
         "mes": "2026-04"
+    },
+    {
+        "nome": null,
+        "valor": null,
+        "categoria": null,
+        "data": null,
+        "mes": null
     }
 ]

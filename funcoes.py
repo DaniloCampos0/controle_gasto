@@ -1,6 +1,7 @@
 from datetime import date
 from dateutil.relativedelta import relativedelta
 from dados import salvar_dados
+import json
 
 def adicionar_gasto(gastos):
     nome = input("Nome do gasto: ")
@@ -219,3 +220,14 @@ def maiores_gastos_agrupados(gastos):
         
 def get_mes(data):
     return data[:7]
+
+def carregar_metas():
+    try:
+        with open("metas.json", "r") as f:
+            return json.load(f)
+    except:
+        return{}
+    
+def salvar_metas(metas):
+    with open("metas.json", "w") as f:
+        json.dump(metas, f, indent=4)
