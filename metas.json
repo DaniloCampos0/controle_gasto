@@ -1,6 +1,7 @@
 {
-    "comida": 800.0,
-    "transporte": 300.0,
-    "lazer": 1000.0,
-    "entretenimento": 8000.0
+    "comida": 700.0,
+    "transporte": 600.0,
+    "lazer": 400.0,
+    "entretenimento": 400.0,
+    "NaN": null
 }

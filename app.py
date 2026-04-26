@@ -178,6 +178,10 @@ if not df.empty:
         )
         
         metas[cat] = valor_meta
+        
+    if valor is None:
+        st.warning("Digite um valor!")
+        st.stop()
     
     if st.button("Salvar metas"):
         salvar_metas(metas)

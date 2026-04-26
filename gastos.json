@@ -194,5 +194,23 @@
         "categoria": null,
         "data": null,
         "mes": null
+    },
+    {
+        "nome": "moletom (1/3)",
+        "valor": 116.66666666666667,
+        "categoria": "roupa",
+        "data": "2026-04-23"
+    },
+    {
+        "nome": "moletom (2/3)",
+        "valor": 116.66666666666667,
+        "categoria": "roupa",
+        "data": "2026-05-23"
+    },
+    {
+        "nome": "moletom (3/3)",
+        "valor": 116.66666666666667,
+        "categoria": "roupa",
+        "data": "2026-06-23"
     }
 ]
