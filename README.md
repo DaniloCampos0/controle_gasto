@@ -7,7 +7,6 @@ Sistema para controle financeiro com dashboard interativo.
 - Cadastro de gastos
 - Parcelamento automático
 - Filtros por mês
-- Metas por categoria
 - Dashboard com gráficos
 
 ## Tecnologias
