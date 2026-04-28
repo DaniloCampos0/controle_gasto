@@ -212,5 +212,11 @@
         "valor": 116.66666666666667,
         "categoria": "roupa",
         "data": "2026-06-23"
+    },
+    {
+        "nome": "sanduiche",
+        "valor": 7.0,
+        "categoria": "comida",
+        "data": "2026-04-28"
     }
 ]

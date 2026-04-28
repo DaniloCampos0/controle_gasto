@@ -1,19 +1,20 @@
 # Controle de Gastos
 
-Sistema em Python para controle financeiro pessoal com persistência de dados e análise básica.
+## Descrição
+Sistema para controle financeiro com dashboard interativo.
 
 ## Funcionalidades
-- Adicionar gastos
-- Editar e remover gastos
-- Exportação CSV
-- Análise por categoria
-- Média de gastos
-- Filtro por mês
+- Cadastro de gastos
+- Parcelamento automático
+- Filtros por mês
+- Metas por categoria
+- Dashboard com gráficos
 
 ## Tecnologias
 - Python
-- JSON
-- CSV
+- Streamlit
+- Pandas
 
-## Objetivo
-Praticar lógica de programação e análise de dados.
+## Como rodar
+pip install -r requirements.txt
+streamlit run app.py

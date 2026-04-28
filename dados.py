@@ -1,5 +1,6 @@
 import json
 
+
 def carregar_dados():
     try:
         with open("gastos.json", "r") as arquivo:
